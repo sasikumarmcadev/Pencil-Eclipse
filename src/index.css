@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "tailwindcss";
+
+/* =============================================
+   PENCIL ECLIPSE — DARK RED THEME
+   ============================================= */
+
+:root {
+  /* ── Base Palette ─────────────────────────── */
+  --bg: #020617;
+  /* Soft Dark  — main background      */
+  --bg-2: #0F172A;
+  /* Deep Slate — elevated sections    */
+  --card: #1E293B;
+  /* Dark Gray  — card surface         */
+  --card-hover: #243044;
+  /* Card hover / focus                */
+
+  /* ── Borders ─────────────────────────────── */
+  --border: #334155;
+  /* Slate Gray — subtle border        */
+  --border-soft: #47556940;
+  /* Semi-transparent soft border      */
+
+  /* ── Red Accent ─────────────────────────── */
+  --red: #E50914;
+  /* Red 600 — primary red          */
+  --red-light: #ff5f6d;
+  /* Red 400 — light red             */
+  --red-dark: #b20710;
+  /* Red 800 — deep red             */
+
+  /* ── Typography ──────────────────────────── */
+  --text: #E2E8F0;
+  /* Light Gray — primary text         */
+  --text-muted: #94A3B8;
+  /* Muted Gray — secondary text       */
+  --text-faint: #475569;
+  /* Soft Gray  — tertiary text        */
+}
+
+/* =============================================
+   BASE RESET & GLOBAL STYLES
+   ============================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  background-color: #141414;
+  color: #E2E8F0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* =============================================
+   CUSTOM SCROLLBAR
+   ============================================= */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E50914;
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f40612;
+}
+
+/* =============================================
+   LUXURY FONT UTILITIES
+   ============================================= */
+
+.font-cormorant,
+.font-playfair,
+.font-cinzel,
+.font-dm,
+.font-poppins,
+.font-inter {
+  font-family: 'Poppins', system-ui, sans-serif;
+  letter-spacing: normal;
+  font-feature-settings: normal;
+}
+
+/* =============================================
+   GRADIENT TEXT
+   ============================================= */
+
+.gradient-text {
+  background: linear-gradient(135deg, #E50914, #ff5f6d, #E50914);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================================
+   SHIMMER
+   ============================================= */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #E50914 0%, #ff5f6d 50%, #E50914 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================================
+   FADE IN
+   ============================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+/* =============================================
+   GLOW & GLASS
+   ============================================= */
+
+.glow {
+  box-shadow: 0 0 40px rgba(229, 9, 20, 0.25);
+}
+
+.glow-text {
+  text-shadow: 0 0 28px rgba(229, 9, 20, 0.55);
+}
+
+.glass {
+  background: rgba(20, 20, 20, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* =============================================
+   RED DIVIDER
+   ============================================= */
+
+.divider-red {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(229, 9, 20, 0.6), transparent);
+}
+
+/* =============================================
+   LINE CLAMP HELPERS
+   ============================================= */
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
