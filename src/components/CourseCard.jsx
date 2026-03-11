@@ -22,7 +22,7 @@ function StarRating({ rating }) {
     );
 }
 
-export default function CourseCard({ course, variant = "default", hideMeta = false }) {
+export default function CourseCard({ course, variant = "default", hideMeta = false, isActive = true }) {
     const discount = Math.round(
         ((course.originalPrice - course.price) / course.originalPrice) * 100
     );
@@ -31,7 +31,7 @@ export default function CourseCard({ course, variant = "default", hideMeta = fal
         return (
             <Link
                 to={`/courses/${course.slug}`}
-                className="group relative bg-[#1c1c1e]/60 backdrop-blur-[40px] saturate-[180%] border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 flex flex-col hover:border-white/20"
+                className="group relative bg-[#1c1c1e] border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 flex flex-col hover:border-white/20"
             >
                 {/* Image */}
                 <div className="relative h-44 sm:h-52 lg:h-60 overflow-hidden">
@@ -54,8 +54,8 @@ export default function CourseCard({ course, variant = "default", hideMeta = fal
                     )}
                 </div>
 
-                {/* Content */}
-                <div className="p-4 sm:p-6 lg:p-7 relative z-10 flex flex-col flex-grow">
+                {/* Content - Subtle visibility when not active */}
+                <div className={`p-4 sm:p-6 lg:p-7 relative z-10 flex flex-col flex-grow transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0 scale-100' : 'opacity-30 translate-y-1 scale-95'}`}>
                     <div className="flex items-center gap-2 mb-2 sm:mb-3">
                         <span className="text-white/60 text-[10px] font-bold uppercase tracking-widest bg-white/5 border border-white/10 px-2.5 py-1 rounded-full">
                             {course.category}

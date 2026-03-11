@@ -81,7 +81,7 @@ export default function Home() {
                     subtitle="Learn from our master artist across multiple disciplines. Every course is crafted to transform complete beginners into confident creators."
                 />
                 <div
-                    className="relative w-full max-w-7xl mx-auto mb-20 h-[420px] sm:h-[480px] md:h-[520px] lg:h-[620px] flex items-center justify-center pt-8 sm:pt-12 overflow-hidden px-4"
+                    className="relative w-full max-w-7xl mx-auto mb-4 h-[420px] sm:h-[480px] md:h-[520px] lg:h-[620px] flex items-center justify-center pt-8 sm:pt-12 overflow-hidden px-4"
                     style={{ perspective: "1200px" }}
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
@@ -129,12 +129,12 @@ export default function Home() {
                                 style={transformStyle}
                                 onClick={handleClick}
                             >
-                                <CourseCard course={course} variant="featured" hideMeta={true} />
+                                <CourseCard course={course} variant="featured" hideMeta={true} isActive={diff === 0} />
                             </div>
                         );
                     })}
                 </div>
-                <div className="flex items-center justify-center gap-4 mt-6">
+                <div className="flex items-center justify-center gap-4 mt-2">
                     <button
                         onClick={handlePrev}
                         className="p-2.5 sm:p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:-translate-x-1 transition-all duration-300 backdrop-blur-md"
