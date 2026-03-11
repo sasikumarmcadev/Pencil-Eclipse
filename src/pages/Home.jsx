@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import HeroCarousel from "../components/HeroCarousel";
 import CourseCard from "../components/CourseCard";
@@ -39,15 +39,37 @@ export default function Home() {
     const [activeIndex, setActiveIndex] = useState(1);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
 
     const N = courses.length;
 
-    const handlePrev = () => setActiveIndex((prev) => (prev - 1 + N) % N);
-    const handleNext = () => setActiveIndex((prev) => (prev + 1) % N);
+    const handleNext = useCallback(() => {
+        setActiveIndex((prev) => (prev + 1) % N);
+    }, [N]);
 
-    const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
+    const handlePrev = useCallback(() => {
+        setActiveIndex((prev) => (prev - 1 + N) % N);
+    }, [N]);
+
+    useEffect(() => {
+        if (isPaused) return;
+
+        const interval = setInterval(() => {
+            handleNext();
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [handleNext, isPaused]);
+
+    const handleTouchStart = (e) => {
+        setIsPaused(true);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
     const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
     const handleTouchEnd = () => {
+        setIsPaused(false);
         if (!touchStart || !touchEnd) return;
         const distance = touchStart - touchEnd;
         if (distance > 50) handleNext(); // Swiped left
@@ -83,6 +105,8 @@ export default function Home() {
                 <div
                     className="relative w-full max-w-7xl mx-auto mb-4 h-[420px] sm:h-[480px] md:h-[520px] lg:h-[620px] flex items-center justify-center pt-8 sm:pt-12 overflow-hidden px-4"
                     style={{ perspective: "1200px" }}
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
