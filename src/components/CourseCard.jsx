@@ -106,9 +106,7 @@ export default function CourseCard({ course, variant = "default", hideMeta = fal
                                 <span className="text-white font-bold text-base sm:text-lg lg:text-xl tracking-tight mt-1">
                                     ₹{course.price.toLocaleString()}
                                 </span>
-                                <span className="text-white/40 text-xs sm:text-sm line-through font-medium">
-                                    ₹{course.originalPrice.toLocaleString()}
-                                </span>
+
                             </div>
                         </div>
                     </div>
@@ -164,9 +162,7 @@ export default function CourseCard({ course, variant = "default", hideMeta = fal
                         <div className="text-white font-bold text-base tracking-tight">
                             ₹{course.price.toLocaleString()}
                         </div>
-                        <div className="text-white/40 text-xs line-through font-medium">
-                            ₹{course.originalPrice.toLocaleString()}
-                        </div>
+
                     </div>
                 </div>
             </div>

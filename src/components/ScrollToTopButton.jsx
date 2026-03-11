@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { useLenis } from 'lenis/react';
 
 export default function ScrollToTopButton() {
     const [isVisible, setIsVisible] = useState(false);
+    const lenis = useLenis();
 
     useEffect(() => {
         const toggleVisibility = () => {
@@ -18,10 +20,14 @@ export default function ScrollToTopButton() {
     }, []);
 
     const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        if (lenis) {
+            lenis.scrollTo(0);
+        } else {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
     };
 
     return (

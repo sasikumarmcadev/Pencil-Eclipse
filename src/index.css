@@ -78,12 +78,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E50914;
+  background: #424242;
   border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f40612;
+  background: #5d5d5d;
 }
 
 /* =============================================
@@ -194,6 +194,16 @@ body {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
+}
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 }
 
 .line-clamp-3 {

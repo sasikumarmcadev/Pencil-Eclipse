@@ -76,7 +76,7 @@ export default function Navbar() {
                                     <path d="M20.71 4.04c.39-.39.39-1.04 0-1.43l-2.34-2.34c-.39-.39-1.04-.39-1.43 0l-3 3 3.77 3.77 3-3zM3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" />
                                 </svg>
                             </div>
-                            <span className="text-2xl font-black tracking-tight flex items-center gap-1.5">
+                            <span className="text-xl sm:text-2xl font-black tracking-tight flex items-center gap-1.5">
                                 <span className="text-white">Pencil</span>
                                 <span className="text-white">Eclipse</span>
                             </span>

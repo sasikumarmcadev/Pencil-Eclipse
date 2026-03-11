@@ -78,11 +78,11 @@ export default function Home() {
                     badge={<span className="inline-flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" /></svg>What We Offer</span>}
                     title="World-Class"
                     highlight="Online Courses"
-                    subtitle="Learn from master artists across multiple disciplines. Every course is crafted to transform complete beginners into confident creators."
+                    subtitle="Learn from our master artist across multiple disciplines. Every course is crafted to transform complete beginners into confident creators."
                 />
                 <div
-                    className="relative w-full max-w-7xl mx-auto mb-16 h-[380px] sm:h-[450px] lg:h-[580px] flex items-center justify-center pt-6 sm:pt-10 overflow-hidden px-4"
-                    style={{ perspective: "1000px" }}
+                    className="relative w-full max-w-7xl mx-auto mb-20 h-[420px] sm:h-[480px] md:h-[520px] lg:h-[620px] flex items-center justify-center pt-8 sm:pt-12 overflow-hidden px-4"
+                    style={{ perspective: "1200px" }}
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
@@ -260,7 +260,7 @@ export default function Home() {
             {/* CTA Banner */}
             <section className="py-24 px-4">
                 <div className="max-w-5xl mx-auto">
-                    <div className="relative rounded-2xl overflow-hidden bg-[#1c1c1e] border border-white/10 p-10 sm:p-16 lg:p-24 text-center shadow-2xl shadow-black">
+                    <div className="relative rounded-2xl overflow-hidden bg-[#1c1c1e] border border-white/10 p-10 sm:p-16 lg:p-24 text-center">
                         {/* Background Deco */}
                         <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/homecta/1200/800')] opacity-5 bg-cover bg-center grayscale" />
 

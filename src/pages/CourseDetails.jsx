@@ -60,10 +60,95 @@ export default function CourseDetails() {
             </div>
 
             {/* Main content + sidebar */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 sm:-mt-24 relative pb-24">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-16 md:-mt-24 relative pb-24">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Left Content */}
-                    <div className="lg:col-span-2 space-y-10">
+                    {/* Sidebar - Top on mobile, Right on lg */}
+                    <div className="lg:col-span-1 lg:order-2">
+                        <div className="sticky top-24">
+                            <div className="bg-[#1c1c1e]/60 backdrop-blur-[40px] saturate-[180%] border border-white/10 rounded-2xl overflow-hidden">
+                                {/* Course thumbnail */}
+                                <div className="relative h-56 overflow-hidden">
+                                    <img
+                                        src={course.thumbnail}
+                                        alt={course.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 hover:bg-white/30 transition-all duration-300">
+                                            <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="p-7 text-center">
+                                    {/* Price */}
+                                    <div className="flex items-baseline justify-center gap-3 mb-2">
+                                        <span className="text-4xl font-bold text-white tracking-tight">
+                                            ₹{course.price.toLocaleString()}
+                                        </span>
+
+                                    </div>
+                                    <div className="flex items-center justify-center gap-2 mb-7">
+                                        <span className="px-2.5 py-1 rounded-full bg-white text-black text-[10px] font-bold tracking-wider">
+                                            {discount}% OFF
+                                        </span>
+                                        <span className="text-white/40 text-[10px] uppercase font-bold tracking-wider">Limited Offer!</span>
+                                    </div>
+
+                                    {/* Buy Button */}
+                                    <button className="w-full py-4 rounded-2xl bg-white text-black font-bold text-base shadow-[0_4px_15px_rgba(255,255,255,0.15)] hover:shadow-[0_4px_25px_rgba(255,255,255,0.25)] hover:bg-gray-100 hover:scale-[1.02] active:scale-100 transition-all duration-300 mb-3 tracking-wide">
+                                        Buy Now — ₹{course.price.toLocaleString()}
+                                    </button>
+                                    <button className="w-full py-3.5 rounded-2xl border border-white/10 text-white/50 text-sm hover:border-white/40 hover:text-white hover:bg-white/5 transition-all duration-300 mb-6 font-bold tracking-wide">
+                                        Try Free Demo
+                                    </button>
+
+                                    {/* Course info */}
+                                    <div className="space-y-4 border-t border-white/10 pt-6 text-left">
+                                        {[
+                                            {
+                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>,
+                                                label: "Duration", value: course.duration
+                                            },
+                                            {
+                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></svg>,
+                                                label: "Lessons", value: `${totalLessons} lessons`
+                                            },
+                                            {
+                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>,
+                                                label: "Level", value: course.level
+                                            },
+                                            {
+                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>,
+                                                label: "Instructor", value: course.instructor
+                                            },
+                                            {
+                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" /></svg>,
+                                                label: "Certificate", value: "Yes"
+                                            },
+                                            {
+                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" /><path d="M8 12h8" /></svg>,
+                                                label: "Access", value: "Lifetime"
+                                            },
+                                        ].map((item) => (
+                                            <div key={item.label} className="flex items-center justify-between text-sm">
+                                                <span className="text-white/50 flex items-center gap-3 font-medium">
+                                                    {item.icon}
+                                                    {item.label}
+                                                </span>
+                                                <span className="text-white w-1/2 text-right font-bold">{item.value}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Left Content - Bottom on mobile, Left on lg */}
+                    <div className="lg:col-span-2 space-y-10 lg:order-1">
                         {/* Course Header */}
                         <div>
                             <div className="flex flex-wrap gap-2 mb-4">
@@ -231,93 +316,6 @@ export default function CourseDetails() {
                                 {course.reviews.map((review) => (
                                     <ReviewCard key={review.id} review={review} />
                                 ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Sticky Sidebar */}
-                    <div className="lg:col-span-1">
-                        <div className="sticky top-24">
-                            <div className="bg-[#1c1c1e]/60 backdrop-blur-[40px] saturate-[180%] border border-white/10 rounded-2xl overflow-hidden shadow-2xl shadow-black">
-                                {/* Course thumbnail */}
-                                <div className="relative h-56 overflow-hidden">
-                                    <img
-                                        src={course.thumbnail}
-                                        alt={course.title}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 hover:bg-white/30 transition-all duration-300">
-                                            <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M8 5v14l11-7z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="p-7 text-center">
-                                    {/* Price */}
-                                    <div className="flex items-baseline justify-center gap-3 mb-2">
-                                        <span className="text-4xl font-bold text-white tracking-tight">
-                                            ₹{course.price.toLocaleString()}
-                                        </span>
-                                        <span className="text-white/40 text-lg line-through font-medium">
-                                            ₹{course.originalPrice.toLocaleString()}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center justify-center gap-2 mb-7">
-                                        <span className="px-2.5 py-1 rounded-full bg-white text-black text-[10px] font-bold tracking-wider">
-                                            {discount}% OFF
-                                        </span>
-                                        <span className="text-white/40 text-[10px] uppercase font-bold tracking-wider">Limited Offer!</span>
-                                    </div>
-
-                                    {/* Buy Button */}
-                                    <button className="w-full py-4 rounded-2xl bg-white text-black font-bold text-base shadow-[0_4px_15px_rgba(255,255,255,0.15)] hover:shadow-[0_4px_25px_rgba(255,255,255,0.25)] hover:bg-gray-100 hover:scale-[1.02] active:scale-100 transition-all duration-300 mb-3 tracking-wide">
-                                        Buy Now — ₹{course.price.toLocaleString()}
-                                    </button>
-                                    <button className="w-full py-3.5 rounded-2xl border border-white/10 text-white/50 text-sm hover:border-white/40 hover:text-white hover:bg-white/5 transition-all duration-300 mb-6 font-bold tracking-wide">
-                                        Try Free Demo
-                                    </button>
-
-                                    {/* Course info */}
-                                    <div className="space-y-4 border-t border-white/10 pt-6 text-left">
-                                        {[
-                                            {
-                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>,
-                                                label: "Duration", value: course.duration
-                                            },
-                                            {
-                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></svg>,
-                                                label: "Lessons", value: `${totalLessons} lessons`
-                                            },
-                                            {
-                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>,
-                                                label: "Level", value: course.level
-                                            },
-                                            {
-                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>,
-                                                label: "Instructor", value: course.instructor
-                                            },
-                                            {
-                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" /></svg>,
-                                                label: "Certificate", value: "Yes"
-                                            },
-                                            {
-                                                icon: <svg className="w-4 h-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" /><path d="M8 12h8" /></svg>,
-                                                label: "Access", value: "Lifetime"
-                                            },
-                                        ].map((item) => (
-                                            <div key={item.label} className="flex items-center justify-between text-sm">
-                                                <span className="text-white/50 flex items-center gap-3 font-medium">
-                                                    {item.icon}
-                                                    {item.label}
-                                                </span>
-                                                <span className="text-white w-1/2 text-right font-bold">{item.value}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

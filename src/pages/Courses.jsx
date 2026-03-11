@@ -34,7 +34,7 @@ export default function Courses() {
                         Explore Our <em className="text-white/60 not-italic italic">Art Courses</em>
                     </h1>
                     <p className="text-white/50 text-base max-w-2xl mx-auto font-light leading-relaxed">
-                        Discover world-class art education taught by master artists. Choose your path and start creating today.
+                        Discover world-class art education taught by our master artist. Choose your path and start creating today.
                     </p>
                 </div>
             </div>
@@ -54,7 +54,7 @@ export default function Courses() {
                         </svg>
                         <input
                             type="text"
-                            placeholder="Search courses, instructors..."
+                            placeholder="Search courses..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="w-full bg-black/40 border border-white/10 rounded-2xl pl-11 pr-4 py-4 text-white placeholder-white/40 focus:outline-none focus:border-white/30 focus:bg-black/60 transition-colors text-sm font-medium tracking-wide shadow-inner"
@@ -62,7 +62,7 @@ export default function Courses() {
                     </div>
 
                     {/* Category filters */}
-                    <div className="flex flex-wrap gap-2.5">
+                    <div className="flex overflow-x-auto sm:flex-wrap gap-2.5 pb-2 sm:pb-0 no-scrollbar">
                         {CATEGORIES.map((cat) => (
                             <button
                                 key={cat}
@@ -78,7 +78,7 @@ export default function Courses() {
                     </div>
 
                     {/* Level filters */}
-                    <div className="flex flex-wrap gap-2.5 border-t border-white/10 pt-5 mt-5">
+                    <div className="flex overflow-x-auto sm:flex-wrap gap-2.5 border-t border-white/10 pt-5 mt-5 no-scrollbar">
                         {LEVELS.map((level) => (
                             <button
                                 key={level}

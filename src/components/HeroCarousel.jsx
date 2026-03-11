@@ -94,13 +94,13 @@ export default function HeroCarousel() {
 
 
                         {/* Title */}
-                        <h1 className="font-cormorant font-bold text-white leading-[1.05] mb-1.5 md:mb-5 text-[1.5rem] sm:text-4xl md:text-[4rem] lg:text-[4.5rem] tracking-tight drop-shadow-md">
+                        <h1 className="font-cormorant font-bold text-white leading-[1.1] mb-4 md:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.5rem] tracking-tight drop-shadow-2xl">
                             {slide.title}{" "}
-                            <em className="text-white/60 not-italic">{slide.titleHighlight}</em>
+                            <em className="text-white/60 not-italic italic">{slide.titleHighlight}</em>
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-white/80 text-[10px] sm:text-xs md:text-lg leading-relaxed mb-0 md:mb-8 max-w-lg font-medium drop-shadow-md">
+                        <p className="text-white/70 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-8 md:mb-10 max-w-xl font-medium drop-shadow-lg">
                             {slide.subtitle}
                         </p>
 

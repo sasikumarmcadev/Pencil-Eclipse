@@ -44,8 +44,8 @@ const VALUES = [
                 <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" /><path d="M12 6v6l4 2" />
             </svg>
         ),
-        title: "Real Artists Teach",
-        desc: "Our instructors are working professionals, not just teachers. Real experience, real skills.",
+        title: "Real Artist Teaches",
+        desc: "Our instructor is a working professional, not just a teacher. Real experience, real skills.",
     },
 ];
 
@@ -81,7 +81,7 @@ export default function About() {
                             <img
                                 src="https://picsum.photos/seed/aboutmission/700/400"
                                 alt="Our Mission"
-                                className="w-full h-80 object-cover"
+                                className="w-full h-64 sm:h-80 md:h-[400px] object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-tr from-[#121212]/60 to-transparent" />
                         </div>
