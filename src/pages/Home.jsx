@@ -258,30 +258,39 @@ export default function Home() {
             </section>
 
             {/* CTA Banner */}
-            <section className="py-24 px-4">
-                <div className="max-w-5xl mx-auto">
-                    <div className="relative rounded-2xl overflow-hidden bg-[#1c1c1e] border border-white/10 p-10 sm:p-16 lg:p-24 text-center">
+            <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto">
+                    <div className="relative rounded-3xl overflow-hidden bg-[#1c1c1e] border border-white/5 p-8 sm:p-16 lg:p-24 text-center">
                         {/* Background Deco */}
-                        <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/homecta/1200/800')] opacity-5 bg-cover bg-center grayscale" />
+                        <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/homecta/1200/800')] opacity-[0.03] bg-cover bg-center grayscale scale-110" />
+                        <div className="absolute -top-24 -right-24 w-80 h-80 bg-white/5 rounded-full blur-[80px] pointer-events-none" />
+                        <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-white/5 rounded-full blur-[80px] pointer-events-none" />
 
                         <div className="relative z-10 max-w-3xl mx-auto">
-                            <h2 className="font-cormorant text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight">
+                            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/40 text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-8 shadow-inner">
+                                Your Creative Future
+                            </span>
+                            
+                            <h2 className="font-cormorant text-4xl sm:text-6xl lg:text-7xl font-semibold text-white mb-6 leading-[1.1] tracking-tight">
                                 Ready to Start Your <br />
-                                <span className="text-white/60 font-bold italic">Artistic Journey?</span>
+                                <span className="text-white/50 italic font-medium">Artistic Journey?</span>
                             </h2>
-                            <p className="text-white/60 text-lg sm:text-xl mb-12 font-medium leading-relaxed">
-                                Join 25,000+ students who have transformed their lives through
-                                the power of art. Your masterpiece is waiting.
+                            
+                            <p className="text-white/40 text-base sm:text-lg lg:text-xl mb-10 sm:mb-12 font-light leading-relaxed max-w-2xl mx-auto px-4 sm:px-0">
+                                Join <span className="text-white font-medium">25,000+ students</span> who have transformed their lives through the power of art. Your masterpiece is waiting.
                             </p>
-                            <Link
-                                to="/courses"
-                                className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-white text-black font-bold text-lg tracking-wide shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:shadow-[0_10px_40px_rgba(255,255,255,0.3)] hover:bg-gray-100 hover:-translate-y-1 transition-all duration-300 group"
-                            >
-                                Explore All Courses
-                                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                </svg>
-                            </Link>
+                            
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                                <Link
+                                    to="/courses"
+                                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-white text-black font-bold text-lg tracking-wide hover:bg-gray-100 hover:-translate-y-1 transition-all duration-300 group"
+                                >
+                                    Explore All Courses
+                                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                    </svg>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
