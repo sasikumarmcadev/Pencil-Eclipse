@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 const NAV_LINKS = [
@@ -32,6 +32,33 @@ export default function Navbar() {
         window.addEventListener('keydown', handleEsc);
         return () => window.removeEventListener('keydown', handleEsc);
     }, [menuOpen]);
+
+    const navRef = useRef(null);
+    const linkRefs = useRef({});
+    const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
+
+    const updatePill = () => {
+        const activeLink = Object.entries(linkRefs.current).find(([path]) => {
+            if (path === "/") return location.pathname === "/";
+            return location.pathname.startsWith(path);
+        });
+
+        if (activeLink && activeLink[1]) {
+            const rect = activeLink[1].getBoundingClientRect();
+            const parentRect = navRef.current.getBoundingClientRect();
+            setPillStyle({
+                left: rect.left - parentRect.left,
+                width: rect.width,
+                opacity: 1
+            });
+        }
+    };
+
+    useEffect(() => {
+        updatePill();
+        window.addEventListener('resize', updatePill);
+        return () => window.removeEventListener('resize', updatePill);
+    }, [location.pathname, scrolled]);
 
     // Prevent body scroll when mobile menu is open
     useEffect(() => {
@@ -83,16 +110,27 @@ export default function Navbar() {
                         </Link>
 
                         {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-1.5 bg-black/20 p-1.5 rounded-full border border-white/5">
+                        <div className="hidden md:flex items-center gap-1.5 bg-black/20 p-1.5 rounded-full border border-white/5 relative" ref={navRef}>
+                            {/* Sliding Active Pill */}
+                            <div 
+                                className="absolute h-[calc(100%-12px)] top-1.5 bg-white rounded-full transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                                style={{
+                                    left: `${pillStyle.left}px`,
+                                    width: `${pillStyle.width}px`,
+                                    opacity: pillStyle.opacity
+                                }}
+                            />
+                            
                             {NAV_LINKS.map((link) => (
                                 <NavLink
                                     key={link.to}
                                     to={link.to}
+                                    ref={el => linkRefs.current[link.to] = el}
                                     end={link.to === "/"}
                                     className={({ isActive }) =>
-                                        `relative px-5 py-2 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent ${isActive
-                                            ? "text-black bg-white border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-                                            : "text-white/60 border-transparent hover:text-white hover:bg-white/5"
+                                        `relative z-10 px-5 py-2 rounded-full text-sm font-bold tracking-wide transition-all duration-300  ${isActive
+                                            ? "text-black"
+                                            : "text-white/60 hover:text-white"
                                         }`
                                     }
                                 >
@@ -154,9 +192,9 @@ export default function Navbar() {
                             to={link.to}
                             end={link.to === "/"}
                             className={({ isActive }) =>
-                                `block px-5 py-3.5 rounded-2xl text-base font-bold tracking-wide transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#121212] ${isActive
-                                    ? "text-black bg-white border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-                                    : "text-white/60 border-transparent hover:text-white hover:bg-white/5"
+                                `block px-5 py-3.5 rounded-2xl text-base font-bold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#121212] ${isActive
+                                    ? "text-black bg-white shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                                    : "text-white/60 hover:text-white hover:bg-white/5"
                                 }`
                             }
                             onClick={() => setMenuOpen(false)}

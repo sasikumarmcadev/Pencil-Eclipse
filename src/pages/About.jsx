@@ -5,7 +5,7 @@ const TEAM = [
         name: "Aryan Mehta",
         role: "Founder & Lead Artist",
         specialty: "Hyper Realism",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aryan",
+        avatar: "https://res.cloudinary.com/dhw6yweku/image/upload/v1773292500/Gemini_Generated_Image_39980t39980t3998_a86ezf.png",
         students: 25000,
     },
 ];

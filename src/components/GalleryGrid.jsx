@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 export default function GalleryGrid({ images }) {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -49,10 +50,10 @@ export default function GalleryGrid({ images }) {
                 ))}
             </div>
 
-            {/* Lightbox Modal */}
-            {selectedImage && (
+            {/* Lightbox Modal - Rendered via Portal to avoid stacking context issues */}
+            {selectedImage && createPortal(
                 <div 
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 pointer-events-auto"
+                    className="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6 md:p-10 pointer-events-auto"
                     onClick={() => setSelectedImage(null)}
                 >
                     {/* Backdrop - Pure Fixed */}
@@ -60,7 +61,7 @@ export default function GalleryGrid({ images }) {
                     
                     {/* Close Button - Optimized for touch and click */}
                     <button 
-                        className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[110] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 hover:scale-110 active:scale-95 transition-all duration-300 shadow-2xl"
+                        className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[1100] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 hover:scale-110 active:scale-95 transition-all duration-300 shadow-2xl"
                         onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
                         aria-label="Close Gallery Image"
                     >
@@ -71,7 +72,7 @@ export default function GalleryGrid({ images }) {
 
                     {/* Image Hub - Perfectly centered & fits everything */}
                     <div 
-                        className="relative z-[105] w-full max-w-5xl h-full flex flex-col items-center justify-center pointer-events-none"
+                        className="relative z-[1050] w-full max-w-5xl h-full flex flex-col items-center justify-center pointer-events-none"
                     >
                         <div 
                             className="relative flex flex-col items-center justify-center w-full h-full p-2 pointer-events-none animate-in zoom-in-95 duration-500 ease-out"
@@ -98,7 +99,8 @@ export default function GalleryGrid({ images }) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     );
