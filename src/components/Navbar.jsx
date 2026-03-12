@@ -90,7 +90,7 @@ export default function Navbar() {
                         {/* Logo - improved accessibility */}
                         <Link
                             to="/"
-                            className="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#121212] rounded-full"
+                            className="flex items-center gap-3.5 group rounded-full"
                             aria-label="Pencil Eclipse - Go to homepage"
                         >
                             <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] group-hover:scale-105 border border-white/10 ring-2 ring-transparent group-hover:ring-white/30 transition-all duration-500">
