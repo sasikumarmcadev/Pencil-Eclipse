@@ -153,48 +153,51 @@ export default function Navbar() {
                         {/* Mobile toggle - improved accessibility */}
                         <button
                             onClick={() => setMenuOpen(!menuOpen)}
-                            className="md:hidden p-2 rounded-full text-white/60 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-[#121212] transition-all duration-300"
+                            className="md:hidden p-2 rounded-full text-white/60 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300"
                             aria-label={menuOpen ? "Close menu" : "Open menu"}
                             aria-expanded={menuOpen}
                             aria-controls="mobile-menu"
                         >
-                            <svg
-                                className="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                            >
-                                {menuOpen ? (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-                                ) : (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
-                                )}
-                            </svg>
+                            <div className="w-6 h-5 relative flex flex-col justify-between items-center group">
+                                <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ease-out ${menuOpen ? "rotate-45 translate-y-[9px]" : ""}`} />
+                                <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ease-out ${menuOpen ? "opacity-0 translate-x-3" : "opacity-100"}`} />
+                                <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ease-out ${menuOpen ? "-rotate-45 -translate-y-[9px]" : ""}`} />
+                            </div>
                         </button>
                     </div>
                 </div>
             </div>
 
+            {/* Full-screen Backdrop for Mobile Menu */}
+            <div 
+                className={`fixed inset-0 bg-black/80 z-[-1] transition-all duration-700 md:hidden ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+                onClick={() => setMenuOpen(false)}
+            />
+
             {/* Mobile Menu - improved accessibility */}
             <div
                 id="mobile-menu"
-                className={`pointer-events-auto w-full md:hidden transition-all duration-500 ease-in-out overflow-hidden flex justify-center ${menuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                className={`pointer-events-auto w-full md:hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden flex justify-center ${menuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
                     }`}
                 aria-hidden={!menuOpen}
             >
-                <div className="bg-[#1c1c1e]/60 saturate-[180%] backdrop-blur-[40px] border-t border-b border-white/10 w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] max-w-7xl px-4 pb-6 pt-4 space-y-2 mt-2 mb-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] ring-1 ring-white/5 relative overflow-hidden">
+                <div className="bg-[#1c1c1e] saturate-[180%] border-t border-b border-white/10 w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] max-w-7xl px-4 pb-6 pt-4 space-y-2 mt-2 mb-4 rounded-2xl ring-1 ring-white/10 relative overflow-hidden">
                     <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/5 blur-[50px] rounded-full pointer-events-none" />
 
-                    {NAV_LINKS.map((link) => (
+                    {NAV_LINKS.map((link, index) => (
                         <NavLink
                             key={link.to}
                             to={link.to}
                             end={link.to === "/"}
+                            style={{ 
+                                transitionDelay: menuOpen ? `${index * 50}ms` : '0ms',
+                                transform: menuOpen ? 'translateY(0)' : 'translateY(10px)',
+                                opacity: menuOpen ? 1 : 0
+                            }}
                             className={({ isActive }) =>
-                                `block px-5 py-3.5 rounded-2xl text-base font-bold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#121212] ${isActive
-                                    ? "text-black bg-white shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-                                    : "text-white/60 hover:text-white hover:bg-white/5"
+                                `block px-5 py-3.5 rounded-2xl text-base font-bold tracking-wide transition-all duration-500 transform ${isActive
+                                    ? "text-black bg-white"
+                                    : "text-white/70 hover:text-white hover:bg-white/5"
                                 }`
                             }
                             onClick={() => setMenuOpen(false)}
@@ -204,7 +207,12 @@ export default function Navbar() {
                     ))}
                     <Link
                         to="/courses"
-                        className="block mt-4 px-5 py-3.5 rounded-2xl bg-white text-black text-base font-bold text-center tracking-wide shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#121212] transition-all duration-300 relative overflow-hidden group/btn"
+                        style={{ 
+                            transitionDelay: menuOpen ? `${NAV_LINKS.length * 50}ms` : '0ms',
+                            transform: menuOpen ? 'translateY(0)' : 'translateY(10px)',
+                            opacity: menuOpen ? 1 : 0
+                        }}
+                        className="block mt-4 px-5 py-4 rounded-2xl bg-white text-black text-base font-extrabold text-center tracking-wide hover:bg-gray-50 transition-all duration-500 transform relative overflow-hidden group/btn"
                         onClick={() => setMenuOpen(false)}
                         aria-label="Enroll Now - Get started with our courses"
                     >
